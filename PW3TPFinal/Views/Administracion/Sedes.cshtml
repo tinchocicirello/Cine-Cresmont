@@ -1,57 +1,57 @@
-﻿@model PW3TPFinal.Models.Sedes
+﻿@model PW3TPFinal.Models.Sede
 
 @{
     ViewBag.Title = "Sedes";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Sedes</h2>
 
-
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Sedes</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+<div class="container">
+        <div class="col-md-12">
+            <h3 class="text-md-left">Gestionar Sedes</h3>
+            <br />
+            <!-- Listado de Sedes -->
+            <div class="card">
+                <div class="card card-block">
+                    <h5 class="card-text">Listado de sedes activas</h5>
+                    <div class="panel-body">
+                        <table class="table table-hover text-center">
+                            <tr>
+                                <td><strong>Sede</strong></td>
+                                <td><strong>Accion</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
+        <br />
+        <div class="col-md-12">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Direccion, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Direccion, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Direccion, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            <!-- Crear nueva Sede -->
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.PrecioGeneral, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PrecioGeneral, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PrecioGeneral, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            @using (Html.BeginForm("Sedes", "Administracion", FormMethod.Post, new { @class = "form-signin" }))
+            {
+                <div class="form-control">
+                    <h4 class="form-text">Agregar Nueva Sede</h4>
+                    <hr />
+                    <p>
+                        @Html.Label("Nombre de Sede")
+                        @Html.TextBox("Nombre", null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+                        <br />
+                        @Html.Label("Direccion")
+                        @Html.TextBox("Direccion", null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Direccion, "", new { @class = "text-danger" })
+                        <br />
+                        @Html.Label("Precio")
+                        @Html.TextBox("Precio", null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.PrecioGeneral, "", new { @class = "text-danger" })
+                    </p>
+                    <button type="submit" class="btn btn-lg btn-primary btn-block">Agregar</button>
+                </div>
+            }
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Inicio")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

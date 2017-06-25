@@ -4,5 +4,21 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Inicio</h2>
+<link href="~/Content/css/album.css" rel="stylesheet">
 
+<div class="container">
+    <h3 class="text-md-left">Peliculas en Cartelera!</h3>
+    <br />
+    <!-- Listado de Peliculas -->
+    <div class="row">
+        <div class="card" style="width: 20rem;">
+            <img class="card-img-top" src="~/Content/images/Peliculas/peli1.jpg" alt="Card image cap">
+            <div class="card-block">
+                <h4 class="card-title">Pelicula 1</h4>
+                <p class="card-text">Genero: Accion</p>
+                <p class="card-text">Calificacion: 4.6/10</p>
+                <a href="#" class="btn btn-primary">Reservar</a>
+            </div>
+        </div>
+    </div>
+</div>

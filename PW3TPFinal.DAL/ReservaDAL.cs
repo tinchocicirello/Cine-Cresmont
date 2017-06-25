@@ -55,7 +55,7 @@ namespace PW3TPFinal.DAL
             return listaHorarios;
         }
 
-        public Versiones ObtenerVersion(int id)
+        public Versiones ObtenerVersionPorId(int id)
         {
             var queryVersiones = (from v in ctx.Versiones where v.IdVersion == id select v).ToList();
 

@@ -34,10 +34,10 @@ namespace PW3TPFinal.logica
 
 
         // metodo para obtener version por id
-        public Versiones ObtenerVersion(int idVersion)
+        public Versiones ObtenerVersionPorId(int idVersion)
         {
             Versiones version = new Versiones();
-            version = rdal.ObtenerVersion(idVersion);
+            version = rdal.ObtenerVersionPorId(idVersion);
 
             return version;
         }
