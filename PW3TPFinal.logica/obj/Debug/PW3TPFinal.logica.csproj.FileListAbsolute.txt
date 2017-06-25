@@ -1,0 +1,5 @@
+f:\users\dar1us\documents\visual studio 2015\Projects\PW3TPFinal\PW3TPFinal.logica\bin\Debug\PW3TPFinal.logica.dll
+f:\users\dar1us\documents\visual studio 2015\Projects\PW3TPFinal\PW3TPFinal.logica\bin\Debug\PW3TPFinal.logica.pdb
+f:\users\dar1us\documents\visual studio 2015\Projects\PW3TPFinal\PW3TPFinal.logica\obj\Debug\PW3TPFinal.logica.csprojResolveAssemblyReference.cache
+f:\users\dar1us\documents\visual studio 2015\Projects\PW3TPFinal\PW3TPFinal.logica\obj\Debug\PW3TPFinal.logica.dll
+f:\users\dar1us\documents\visual studio 2015\Projects\PW3TPFinal\PW3TPFinal.logica\obj\Debug\PW3TPFinal.logica.pdb

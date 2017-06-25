@@ -1,0 +1,30 @@
+﻿@model  PW3TPFinal.Models.Usuario
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/css/login.css" rel="stylesheet" />
+
+<div class="container">
+    @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "form-signin" }))
+    {
+        <p class="form-signin-heading">
+            <img src="~/Content/images/logo-cresmont.png" />
+        </p>
+        <div class="form-group">
+            @Html.Label("nombre de Usuario")
+            @Html.TextBoxFor(u => u.NombreUsuario, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.NombreUsuario, "", new { @class = "text-danger" })
+
+
+            @Html.Label("Contraseña")
+            @Html.PasswordFor(c => c.Password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">
+            Ingresar
+        </button>
+    }
+</div>

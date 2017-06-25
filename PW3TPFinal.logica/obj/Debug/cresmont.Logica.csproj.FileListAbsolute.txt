@@ -1,0 +1,10 @@
+C:\Users\Tincho\Desktop\Cresmont\PW3TPFinal.logica\bin\Debug\PW3TPFinal.logica.dll
+C:\Users\Tincho\Desktop\Cresmont\PW3TPFinal.logica\bin\Debug\PW3TPFinal.logica.pdb
+C:\Users\Tincho\Desktop\Cresmont\PW3TPFinal.logica\obj\Debug\cresmont.Logica.csprojResolveAssemblyReference.cache
+C:\Users\Tincho\Desktop\Cresmont\PW3TPFinal.logica\obj\Debug\PW3TPFinal.logica.dll
+C:\Users\Tincho\Desktop\Cresmont\PW3TPFinal.logica\obj\Debug\PW3TPFinal.logica.pdb
+C:\Users\Tincho\Desktop\Cresmont\PW3TPFinal.logica\bin\Debug\PW3TPFinal.DAL.dll
+C:\Users\Tincho\Desktop\Cresmont\PW3TPFinal.logica\bin\Debug\EntityFramework.dll
+C:\Users\Tincho\Desktop\Cresmont\PW3TPFinal.logica\bin\Debug\PW3TPFinal.DAL.pdb
+C:\Users\Tincho\Desktop\Cresmont\PW3TPFinal.logica\bin\Debug\PW3TPFinal.DAL.dll.config
+C:\Users\Tincho\Desktop\Cresmont\PW3TPFinal.logica\bin\Debug\EntityFramework.xml

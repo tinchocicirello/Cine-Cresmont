@@ -1,0 +1,10 @@
+C:\Users\Tincho\Desktop\Cresmont\PW3TPFinal.DAL\obj\Debug\PW3TPFinal.DAL.dll
+C:\Users\Tincho\Desktop\Cresmont\PW3TPFinal.DAL\obj\Debug\PW3TPFinal.DAL.pdb
+C:\Users\Tincho\Desktop\Cresmont\PW3TPFinal.DAL\obj\Debug\cresmont.DAL.csprojResolveAssemblyReference.cache
+C:\Users\Tincho\Desktop\Cresmont\PW3TPFinal.DAL\bin\Debug\PW3TPFinal.DAL.dll.config
+C:\Users\Tincho\Desktop\Cresmont\PW3TPFinal.DAL\bin\Debug\PW3TPFinal.DAL.dll
+C:\Users\Tincho\Desktop\Cresmont\PW3TPFinal.DAL\bin\Debug\PW3TPFinal.DAL.pdb
+C:\Users\Tincho\Desktop\Cresmont\PW3TPFinal.DAL\bin\Debug\EntityFramework.dll
+C:\Users\Tincho\Desktop\Cresmont\PW3TPFinal.DAL\bin\Debug\EntityFramework.xml
+C:\Users\Tincho\Desktop\Cresmont\PW3TPFinal.DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Tincho\Desktop\Cresmont\PW3TPFinal.DAL\bin\Debug\EntityFramework.SqlServer.xml

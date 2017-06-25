@@ -1,0 +1,5 @@
+f:\users\dar1us\documents\visual studio 2015\Projects\PW3TPFinal\PW3TPFinal.DAL\bin\Debug\PW3TPFinal.DAL.dll
+f:\users\dar1us\documents\visual studio 2015\Projects\PW3TPFinal\PW3TPFinal.DAL\bin\Debug\PW3TPFinal.DAL.pdb
+f:\users\dar1us\documents\visual studio 2015\Projects\PW3TPFinal\PW3TPFinal.DAL\obj\Debug\PW3TPFinal.DAL.csprojResolveAssemblyReference.cache
+f:\users\dar1us\documents\visual studio 2015\Projects\PW3TPFinal\PW3TPFinal.DAL\obj\Debug\PW3TPFinal.DAL.dll
+f:\users\dar1us\documents\visual studio 2015\Projects\PW3TPFinal\PW3TPFinal.DAL\obj\Debug\PW3TPFinal.DAL.pdb
