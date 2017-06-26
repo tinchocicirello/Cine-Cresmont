@@ -1,0 +1,35 @@
+﻿@model PW3TPFinal.Models.Sede
+@{
+    ViewBag.Title = "editarSedes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="col-md-12">
+
+        <!-- Crear nueva Sede -->
+
+        @using (Html.BeginForm("EditarSede", "Administracion", FormMethod.Post, new { @class = "form-signin" }))
+        {
+            <div class="form-control">
+                <h4 class="form-text">Agregar Nueva Sede</h4>
+                <hr />
+                <p>
+                    @Html.Label("Nombre de Sede")
+                    @Html.TextBox("Nombre", null, new { @class = "form-control", @value = ViewBag.Nombre })
+                    @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                    <br />
+                    @Html.Label("Direccion")
+                    @Html.TextBox("Direccion", null, new { @class = "form-control", @value = ViewBag.Direccion })
+                    @Html.ValidationMessageFor(model => model.Direccion, "", new { @class = "text-danger" })
+                    <br />
+                    @Html.Label("Precio General de la Sede")
+                    @Html.TextBox("Precio", null, new { @class = "form-control", @value = ViewBag.PrecioGeneral })
+                    @Html.ValidationMessageFor(model => model.PrecioGeneral, "", new { @class = "text-danger" })
+                </p>
+                <button type="submit" class="btn btn-lg btn-primary btn-block">Modificar</button>
+            </div>
+        }
+    </div>
+</div>
+
+

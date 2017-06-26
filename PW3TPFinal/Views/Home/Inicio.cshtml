@@ -1,7 +1,29 @@
-﻿@{
+﻿@model PW3TPFinal.Models.Pelicula
+@{
     ViewBag.Title = "Inicio";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
 
+<link href="~/Content/css/album.css" rel="stylesheet">
+
+<div class="container">
+    <h3 class="text-md-left">Peliculas en Cartelera!</h3>
+    <br />
+    @foreach (var peli in ViewBag.Peliculas)
+    {
+        <!-- Listado de Peliculas -->
+        <div class="row">
+            <div class="card">
+                <img class="card-img-top" src="@peli.Imagen" alt="Card image cap">
+                <div class="card-block">
+                    <h4 class="card-title">@peli.Nombre</h4>
+                    <p class="card-text">@peli.Genero</p>
+                    <p class="card-text">@peli.Calificacion</p>
+                    <a href="#" class="btn btn-primary">Reservar</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

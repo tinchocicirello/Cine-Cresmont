@@ -12,24 +12,31 @@ namespace PW3TPFinal.Controllers
 {
     public class HomeController : Controller
     {
-        /*
+        
         PeliculaService pservice = new PeliculaService();
         ReservaService rservice = new ReservaService();
         CarteleraService cservice = new CarteleraService();
-        SedeService sservice = new SedeService();*/
+        SedeService sservice = new SedeService();
 
         //
         // GET: /Home/
-
+        [HttpGet]
         public ActionResult Inicio()
         {
-
+            ViewBag.Peliculas = pservice.ObtenerPeliculas();
             return View();
         }
-
+ 
+        [HttpGet]
         public ActionResult Login()
         {
+            if(Session["user"] != null)
+            {
+                RedirectToAction("Incio", "Administracion");
+            }
+
             return View();
+            
         }
 
         [HttpPost]
@@ -39,12 +46,11 @@ namespace PW3TPFinal.Controllers
             {
                 using (CresmontContext ctx = new CresmontContext())
                 {
-                    var loginUser = ctx.Usuarios.Where(a => a.NombreUsuario.Equals(usuario.NombreUsuario) && a.Password.Equals(usuario.Password)).FirstOrDefault();
+                    var user = ctx.Usuarios.Where(a => a.NombreUsuario.Equals(usuario.NombreUsuario) && a.Password.Equals(usuario.Password)).FirstOrDefault();
 
-                    if (loginUser != null)
+                    if (user != null)
                     {
-                        Session["IdUser"] = loginUser.IdUsuario.ToString();
-                        Session["username"] = loginUser.NombreUsuario;
+                        Session["user"] = user.NombreUsuario;
                         return RedirectToAction("Home");
                     }
                 }
@@ -54,11 +60,12 @@ namespace PW3TPFinal.Controllers
             return View();
         }
 
+        [HttpGet]
         public ActionResult Home()
         {
-            if (Session["IdUser"] != null)
+            if (Session["user"] != null)
             {
-                return View();
+                return RedirectToAction("Inicio", "Administracion");
             }
             else
             {
@@ -67,6 +74,7 @@ namespace PW3TPFinal.Controllers
 
         }
 
+        [HttpGet]
         public ActionResult Logout()
         {
             Session.Clear();

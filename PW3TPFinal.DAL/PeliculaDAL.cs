@@ -72,47 +72,24 @@ namespace PW3TPFinal.DAL
         // metodo para listar generos
         public List<Generos> ObtenerGeneros()
         {
-            var queryGeneros = (from g in ctx.Generos select g).ToList();
-
-            List<Generos> generoList = new List<Generos>();
-            Generos genero = new Generos();
-
-            foreach (Generos g in queryGeneros)
-            {
-                genero.IdGenero = g.IdGenero;
-                genero.Nombre = g.Nombre;
-                generoList.Add(genero);
-            }
-
-            return generoList;
+            List<Generos> listaGeneros = (from g in ctx.Generos select g).ToList();
+            return listaGeneros;
         }
 
 
         // metodo para listar claificaciones
         public List<Calificaciones> ObtenerCalificaciones()
         {
-            var queryCalif = (from c in ctx.Calificaciones select c).ToList();
+            List<Calificaciones> listaCalificaciones = (from c in ctx.Calificaciones select c).ToList();
 
-            List<Calificaciones> calificacionesList = new List<Calificaciones>();
-            Calificaciones calificacion = new Calificaciones();
-
-            foreach (Calificaciones c in queryCalif)
-            {
-                
-                calificacion.IdCalificacion = c.IdCalificacion;
-                calificacion.Nombre = c.Nombre;
-                calificacionesList.Add(calificacion);
-            }
-
-            return calificacionesList;
+            return listaCalificaciones;
         }
 
         // metodo para listar las versiones
         public List<Versiones> ObtenerVersiones()
         {
-            var versiones = (from v in ctx.Versiones select v).ToList();
-
-            return versiones;
+           List<Versiones> listaVersiones = (from v in ctx.Versiones select v).ToList();
+            return listaVersiones;
         }
     }
 }

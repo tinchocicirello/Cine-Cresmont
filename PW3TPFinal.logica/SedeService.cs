@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PW3TPFinal.DAL;
 
+
 namespace PW3TPFinal.logica
 {
     public class SedeService
@@ -14,6 +15,7 @@ namespace PW3TPFinal.logica
         //metodo para guardad las sedes
         public void GuardarSede(Sedes sede)
         {
+
             sdal.GuardarSede(sede);
             return;
         }

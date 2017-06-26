@@ -174,6 +174,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\album.css" />
     <Content Include="Content\css\bootstrap-grid.css" />
     <Content Include="Content\css\bootstrap-grid.min.css" />
     <Content Include="Content\css\bootstrap-reboot.css" />
@@ -182,17 +183,12 @@
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\login.css" />
     <Content Include="Content\css\sticky-footer-navbar.css" />
+    <Content Include="Content\images\Peliculas\peli1.jpg" />
     <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\images\logo-cresmont.png" />
-    <Content Include="Content\images\Peliculas\BellaYBestia.jpg" />
-    <Content Include="Content\images\Peliculas\BellaYBestiachica.jpg" />
-    <Content Include="Content\images\Peliculas\GuardianesDos.jpg" />
-    <Content Include="Content\images\Peliculas\JefeEnPanales.jpg" />
-    <Content Include="Content\images\Peliculas\LaPosesion.jpg" />
-    <Content Include="Content\images\Peliculas\SoldadoArgentino.jpg" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -209,7 +205,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Inicio.cshtml" />
     <Content Include="Views\Peliculas\Reserva.cshtml" />
-    <Content Include="Views\Peliculas\VerificacionReserva.cshtml" />
+    <Content Include="Views\Peliculas\ConfirmarReserva.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Administracion\Inicio.cshtml" />
     <Content Include="Views\Administracion\Peliculas.cshtml" />
@@ -229,6 +225,9 @@
     <Content Include="Content\css\bootstrap.css.map" />
     <Content Include="Content\css\bootstrap.min.css.map" />
     <None Include="Project_Readme.html" />
+    <Content Include="Views\Administracion\editarSedes.cshtml" />
+    <Content Include="Views\Administracion\EditarPelicula.cshtml" />
+    <Content Include="Views\Administracion\NuevaPelicula.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

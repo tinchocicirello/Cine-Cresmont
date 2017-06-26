@@ -7,51 +7,62 @@
 
 
 <div class="container">
-        <div class="col-md-12">
-            <h3 class="text-md-left">Gestionar Sedes</h3>
-            <br />
-            <!-- Listado de Sedes -->
-            <div class="card">
-                <div class="card card-block">
-                    <h5 class="card-text">Listado de sedes activas</h5>
-                    <div class="panel-body">
-                        <table class="table table-hover text-center">
+    <div class="col-md-12">
+        <h3 class="text-md-left">Gestionar Sedes</h3>
+        <br />
+        <!-- Listado de Sedes -->
+        <div class="card">
+            <div class="card card-block">
+                <h5 class="card-text">Listado de sedes activas</h5>
+                <div class="panel-body">
+                    <table class="table table-hover">
+                        <tr>
+                            <td><strong>Sede</strong></td>
+                            <td><strong>Dirección</strong></td>
+                            <td><strong>Precio General</strong></td>
+                            <td></td>
+                        </tr>
+                        @foreach (var sedes in ViewBag.Sedes)
+                        {
                             <tr>
-                                <td><strong>Sede</strong></td>
-                                <td><strong>Accion</strong></td>
+                                <td>@sedes.Nombre</td>
+                                <td>@sedes.Direccion</td>
+                                <td>@sedes.PrecioGeneral</td>
+                                <td class="text-right">
+                                    @Html.ActionLink("Editar", "EditarSede", "Administracion", new { id = @sedes.IdSede }, new { @class = "btn btn-sm" })
+                                </td>
                             </tr>
-                        </table>
-                    </div>
+                        }
+                    </table>
                 </div>
             </div>
         </div>
-        <br />
-        <div class="col-md-12">
+    </div>
+    <br />
+    <div class="col-md-12">
 
-            <!-- Crear nueva Sede -->
+        <!-- Crear nueva Sede -->
 
-            @using (Html.BeginForm("Sedes", "Administracion", FormMethod.Post, new { @class = "form-signin" }))
-            {
-                <div class="form-control">
-                    <h4 class="form-text">Agregar Nueva Sede</h4>
-                    <hr />
-                    <p>
-                        @Html.Label("Nombre de Sede")
-                        @Html.TextBox("Nombre", null, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
-
-                        <br />
-                        @Html.Label("Direccion")
-                        @Html.TextBox("Direccion", null, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Direccion, "", new { @class = "text-danger" })
-                        <br />
-                        @Html.Label("Precio")
-                        @Html.TextBox("Precio", null, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.PrecioGeneral, "", new { @class = "text-danger" })
-                    </p>
-                    <button type="submit" class="btn btn-lg btn-primary btn-block">Agregar</button>
-                </div>
-            }
-        </div>
+        @using (Html.BeginForm("Sedes", "Administracion", FormMethod.Post, new { @class = "form-signin" }))
+        {
+            <div class="form-control">
+                <h4 class="form-text">Agregar Nueva Sede</h4>
+                <hr />
+                <p>
+                    @Html.Label("Nombre de Sede")
+                    @Html.TextBox("Nombre", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                    <br />
+                    @Html.Label("Direccion")
+                    @Html.TextBox("Direccion", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Direccion, "", new { @class = "text-danger" })
+                    <br />
+                    @Html.Label("Precio General de la Sede")
+                    @Html.TextBox("Precio", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.PrecioGeneral, "", new { @class = "text-danger" })
+                </p>
+                <button type="submit" class="btn btn-lg btn-primary btn-block">Agregar</button>
+            </div>
+        }
     </div>
 </div>

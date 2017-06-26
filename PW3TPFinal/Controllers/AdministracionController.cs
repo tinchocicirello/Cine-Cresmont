@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using PW3TPFinal.logica;
 using PW3TPFinal.DAL;
+using System.IO;
 
 namespace PW3TPFinal.Controllers
 {
@@ -18,25 +19,67 @@ namespace PW3TPFinal.Controllers
 
         CresmontContext ctx = new CresmontContext();
 
-        // GET: Administracion
+
+          ////////////////////
+         // Administracion //
+        ////////////////////
+
+        // Inicio controller
         public ActionResult Inicio()
         {
             return View();
         }
+
+        // Controllers para las peliculas //
         [HttpGet]
         public ActionResult Peliculas()
         {
+            ViewBag.Peliculas = pservice.ObtenerPeliculas();
             return View();
         }
+
+        [HttpGet]
+        public ActionResult NuevaPelicula()
+        {
+            ViewBag.Calificaciones = pservice.ObtenerCalificaciones();
+            ViewBag.Generos = pservice.ObtenerGeneros();
+            return View();
+        }
+
         [HttpPost]
-        public ActionResult Peliculas(Pelicula p)
+        public ActionResult NuevaPelicula(Peliculas p, HttpPostedFileBase img)
+        {
+
+            var nombreArchivo = DateTime.Now.Year + "/" + DateTime.Now.Month + "/" + DateTime.Now.Day + "/" + Path.GetFileName(img.FileName);
+            var path = Path.Combine(Server.MapPath("~/Content/images/Peliculas/"), nombreArchivo);
+            img.SaveAs(path);
+            p.Imagen = path;
+            p.FechaCarga = DateTime.Now;
+
+            pservice.AgregarPelicula(p);
+            return RedirectToAction("Peliculas");
+        }
+
+        [HttpGet]
+        public ActionResult EditarPelicula()
+        {
+            ViewBag.Calificaciones = pservice.ObtenerCalificaciones();
+            ViewBag.Generos = pservice.ObtenerGeneros();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult EditarPelicula(Peliculas p)
         {
             return View();
         }
+        // fin Controllers para las peliculas //
+
+        // Controllers para las sedes //
         [HttpGet]
         public ActionResult Sedes()
         {
-           ViewBag.Sedes = sservice.ObtenerSedes();
+            ViewBag.Sedes = sservice.ObtenerSedes();
             return View();
         }
         [HttpPost]
@@ -51,7 +94,23 @@ namespace PW3TPFinal.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult EditarSede(int idSede)
+        {
+            ViewBag.Sede = sservice.ObtenerSedePorId(idSede);
+            return View();
+        }
 
+        [HttpPost]
+        public ActionResult EditarSede(Sedes sede)
+        {
+
+            sservice.ActualizarSede(sede);
+            return RedirectToAction("Sedes");
+        }
+        // fin Controllers para las sedes //
+
+        // Controllers para las carteleras //
         [HttpGet]
         public ActionResult Carteleras()
         {
@@ -82,10 +141,14 @@ namespace PW3TPFinal.Controllers
         {
             return View();
         }
+        // fin Controllers para las carteleras //
+
+        // Controllers para los reportes //
         [HttpGet]
         public ActionResult Reportes()
         {
             return View();
         }
+        // fin Controllers para los reportes  //
     }
 }

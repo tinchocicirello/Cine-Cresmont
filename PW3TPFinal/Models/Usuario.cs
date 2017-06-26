@@ -8,12 +8,10 @@ namespace PW3TPFinal.Models
 {
     public class Usuario
     {
-        [Required]
-        [StringLength(4, MinimumLength = 4)]
+        [Required(ErrorMessage = "Ingrese nombre de usuario")]
         public String NombreUsuario { get; set; }
 
-        [Required]
-        [StringLength(8, MinimumLength = 8)]
+        [Required(ErrorMessage = "Ingrese un password")]
         public String Password { get; set; }
     }
 }

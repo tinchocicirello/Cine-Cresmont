@@ -8,20 +8,26 @@ namespace PW3TPFinal.Models
 {
     public class Pelicula
     {
-        [Required]
+        [Required(ErrorMessage = "Debe ingresar un nombre de pelicula")]
         [StringLength(30, MinimumLength = 5)]
         public string Nombre { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Debe ingresar una descripcion de pelicula")]
         [StringLength(300, MinimumLength = 10)]
         public string Descripcion { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Debe ingresar una imagen de pelicula")]
         public string Imagen { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Debe ingresar una duracion de pelicula")]
         [Range(30, 90, ErrorMessage = "La duracion debe ser de máximo 90 minutos y minimo 30 minutos")]
         public int Duracion { get; set; }
+
+        [Required]
+        public int IdCalificacion { get; set; }
+
+        [Required]
+        public int IdGenero { get; set; }
 
     }
 }

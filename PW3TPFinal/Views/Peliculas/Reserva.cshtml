@@ -1,105 +1,67 @@
-﻿@model PW3TPFinal.Models.Reservas
+﻿@model PW3TPFinal.DAL.Reservas
 
 @{
     ViewBag.Title = "Reserva";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Reserva</h2>
+<div class="container">
+    <div class="col-md-12">
+        <h3 class="text-md-left">Reservar Película</h3>
+        <br />
+        <div class="card">
+            <div class="card card-block">
+                <h5 class="card-text">Reservar</h5>
+                <div class="panel-body">
+                    @using (Html.BeginForm("ConfirmarReserva", "Peliculas", FormMethod.Post, new { @class = "form-signin" }))
+                    {
+                        <div class="form-group">
+                            @Html.Label("Version")
+                            <select class="form-control">
+                                @foreach (var v in ViewData.Versiones)
+                                {
+                                    <option value="@v.IdVersion">@v.Nombre</option>
+                                }
+                            </select>
+                          
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Sede")
+                            <select class="form-control">
+                                @foreach(var s in ViewData.Sedes)
+                                {
+                                    <option value="@s.IdSede">@s.Nombre</option>
+                                }
+                            </select>
+                            
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Dia")
+                            <select class="form-control">
+                                @foreach (var d in ViewData.Fechas)
+                                {
+                                    <option value="@d.dia">@d.Dia</option>
+                                }
+                            </select>
+                            
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Horario")
+                            <select class="form-control">
+                                @foreach (var h in ViewData.Horas)
+                                {
+                                    <option value="@h.Hora">@h.Hora</option>
+                                }
+                            </select>
+                            
+                        </div>
 
-
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Reservas</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.IdSede, "IdSede", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("IdSede", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.IdSede, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IdVersion, "IdVersion", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("IdVersion", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.IdVersion, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IdPelicula, "IdPelicula", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("IdPelicula", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.IdPelicula, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.FechaHoraInicio, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FechaHoraInicio, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FechaHoraInicio, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IdTipoDocumento, "IdTipoDocumento", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("IdTipoDocumento", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.IdTipoDocumento, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.NumeroDocumento, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NumeroDocumento, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NumeroDocumento, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CantidadEntradas, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CantidadEntradas, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CantidadEntradas, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.FechaCarga, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FechaCarga, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FechaCarga, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">
+                            ¡Comprar!
+                        </button>
+                    }
+                </div>
             </div>
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Inicio")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

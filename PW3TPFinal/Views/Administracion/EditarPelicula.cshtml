@@ -1,0 +1,51 @@
+﻿@model PW3TPFinal.Models.Pelicula
+@{
+    ViewBag.Title = "EditarPelicula";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="col-md-12">
+        <h3 class="text-md-left">Editar Pelicula</h3>
+        <br />
+        <div class="card">
+            <div class="card card-block">
+                <div class="panel-body">
+                    @using (Html.BeginForm("EditarPelicula", "Administracion", FormMethod.Post, new { enctype = "multipart/form-data", @class = "login-form" }))
+                    {
+                        @Html.Label("Nombre")
+                        @Html.TextBox("Nombre", null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                        <br />
+                        @Html.Label("Descripcion")
+                        @Html.TextArea("Descripcion", new { rows = 6, columns = 40, @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+
+                        <br />
+                        @Html.Label("Genero")
+                        @Html.DropDownListFor(model => model.IdGenero, new SelectList(ViewBag.Generos, "IdGenero", "Nombre"), new { @class = "form-control" })
+
+                        <br />
+                        @Html.Label("Calificacion")
+                        @Html.DropDownListFor(model => model.IdCalificacion, new SelectList(ViewBag.Calificaciones, "IdCalificacion", "Nombre"), new { @class = "form-control" })
+
+                        <br />
+                        @Html.Label("Imagen")
+                        @Html.TextBox("Imagen", null, new { @class = "form-control", type = "file" })
+                        @Html.ValidationMessageFor(model => model.Imagen, "", new { @class = "text-danger" })
+
+                        <br />
+                        @Html.Label("Duración")
+                        @Html.TextBox("Duracion", null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Duracion, "", new { @class = "text-danger" })
+
+                        <br />
+
+                        <button type="submit" class="btn btn-lg btn-primary btn-block">Editar</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
