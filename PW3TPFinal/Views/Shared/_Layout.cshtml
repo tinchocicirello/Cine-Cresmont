@@ -21,16 +21,36 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="../Home/Inicio">
                 <img src="~/Content/images/logo-cresmont.png" width="150" />
             </a>
-            <div class="collapse navbar-collapse centro" id="navbarCollapse">
-               
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        @Html.ActionLink("Administración", "Login", "Home", new { @class = "nav-link text-right" })
-                    </li>
-                </ul>
+            <div class="collapse navbar-collapse nav-pills" id="navbarCollapse">
+                
+                    @if (Session["user"] != null)
+                    {
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                @Html.ActionLink("Peliculas", "Peliculas", new { @Controller = "Administracion" }, new { @class = "nav-link" })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Sedes", "Sedes", new { @Controller = "Administracion" }, new { @class = "nav-link" })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Carteleras", "Carteleras", new { @Controller = "Administracion" }, new { @class = "nav-link" })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("Reportes", "Reportes", new { @Controller = "Administracion" }, new { @class = "nav-link" })
+                            </li>
+                        </ul>
+                        <p class="navbar-text">Bienvenido @Session["user"]</p>
+                        @Html.ActionLink("Salir", "Logout", new { @Controller = "Home" }, new { @class = "nav-link text-right" })
+                    }
+                    else
+                    {
+                        <span class="navbar-nav">
+                            @Html.ActionLink("Administración", "Login", new { @Controller = "Home" }, new { @class = "nav-link nav-text text-center" })
+                        </span>
+                    }
             </div>
         </div>
     </nav>

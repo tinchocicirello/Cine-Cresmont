@@ -12,31 +12,37 @@ namespace PW3TPFinal.Controllers
 {
     public class HomeController : Controller
     {
-        
+
+
+         /////////////////////
+        //      HOME       //
+       /////////////////////
+
         PeliculaService pservice = new PeliculaService();
         ReservaService rservice = new ReservaService();
         CarteleraService cservice = new CarteleraService();
         SedeService sservice = new SedeService();
 
-        //
-        // GET: /Home/
+        // resuelve inicio //
         [HttpGet]
         public ActionResult Inicio()
         {
             ViewBag.Peliculas = pservice.ObtenerPeliculas();
             return View();
         }
- 
+
+
+        // resuelve login //
         [HttpGet]
         public ActionResult Login()
         {
-            if(Session["user"] != null)
+            if (Session["user"] != null)
             {
-                RedirectToAction("Incio", "Administracion");
+                return RedirectToAction("Inicio", "Administracion");
             }
 
             return View();
-            
+
         }
 
         [HttpPost]
@@ -44,22 +50,28 @@ namespace PW3TPFinal.Controllers
         {
             if (ModelState.IsValid)
             {
-                using (CresmontContext ctx = new CresmontContext())
-                {
-                    var user = ctx.Usuarios.Where(a => a.NombreUsuario.Equals(usuario.NombreUsuario) && a.Password.Equals(usuario.Password)).FirstOrDefault();
+                //using (CresmontContext ctx = new CresmontContext())
+                //{
+                    //var user = ctx.Usuarios.Where(a => a.NombreUsuario.Equals(usuario.NombreUsuario) && a.Password.Equals(usuario.Password)).FirstOrDefault();
 
-                    if (user != null)
+                    
+                    if (usuario.NombreUsuario == "admin" && usuario.Password == "123")
                     {
-                        Session["user"] = user.NombreUsuario;
+                        Session["user"] = usuario.NombreUsuario;
+                        if(Session["redirect"] != null)
+                        {
+                            return RedirectToAction((String)Session["redirect"], "Administracion");
+                        }
                         return RedirectToAction("Home");
                     }
-                }
+                //}
 
             }
 
             return View();
         }
 
+        // resuelve home //
         [HttpGet]
         public ActionResult Home()
         {
@@ -74,6 +86,7 @@ namespace PW3TPFinal.Controllers
 
         }
 
+        // resuelve logout //
         [HttpGet]
         public ActionResult Logout()
         {

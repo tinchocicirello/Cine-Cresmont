@@ -27,6 +27,11 @@ namespace PW3TPFinal.Controllers
         // Inicio controller
         public ActionResult Inicio()
         {
+            if(Session["user"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
             return View();
         }
 
@@ -34,6 +39,12 @@ namespace PW3TPFinal.Controllers
         [HttpGet]
         public ActionResult Peliculas()
         {
+            if (Session["user"] == null)
+            {
+                Session["redirect"] = "Peliculas";
+                return RedirectToAction("Login", "Home");
+            }
+
             ViewBag.Peliculas = pservice.ObtenerPeliculas();
             return View();
         }
@@ -41,6 +52,11 @@ namespace PW3TPFinal.Controllers
         [HttpGet]
         public ActionResult NuevaPelicula()
         {
+            if (Session["user"] == null)
+            {
+                Session["redirect"] = "NuevaPelicula";
+                return RedirectToAction("Login", "Home");
+            }
             ViewBag.Calificaciones = pservice.ObtenerCalificaciones();
             ViewBag.Generos = pservice.ObtenerGeneros();
             return View();
@@ -63,6 +79,11 @@ namespace PW3TPFinal.Controllers
         [HttpGet]
         public ActionResult EditarPelicula()
         {
+            if (Session["user"] == null)
+            {
+                Session["redirect"] = "EditarPelicula";
+                return RedirectToAction("Login", "Home");
+            }
             ViewBag.Calificaciones = pservice.ObtenerCalificaciones();
             ViewBag.Generos = pservice.ObtenerGeneros();
             return View();
@@ -79,32 +100,42 @@ namespace PW3TPFinal.Controllers
         [HttpGet]
         public ActionResult Sedes()
         {
+            if (Session["user"] == null)
+            {
+                Session["redirect"] = "Sedes";
+                return RedirectToAction("Login", "Home");
+            }
             ViewBag.Sedes = sservice.ObtenerSedes();
             return View();
         }
+
         [HttpPost]
         public ActionResult Sedes(Sedes sede)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid) 
             {
                 sservice.GuardarSede(sede);
-                return View();
+                return RedirectToAction("Sedes");
             }
 
-            return View();
+            return View(sede);
         }
 
         [HttpGet]
-        public ActionResult EditarSede(int idSede)
+        public ActionResult EditarSede(int id)
         {
-            ViewBag.Sede = sservice.ObtenerSedePorId(idSede);
+            if (Session["user"] == null)
+            {
+                Session["redirect"] = "EditarSede";
+                return RedirectToAction("Login", "Home");
+            }
+            ViewBag.Sede = sservice.ObtenerSedePorId(id);
             return View();
         }
 
         [HttpPost]
         public ActionResult EditarSede(Sedes sede)
         {
-
             sservice.ActualizarSede(sede);
             return RedirectToAction("Sedes");
         }
@@ -114,27 +145,13 @@ namespace PW3TPFinal.Controllers
         [HttpGet]
         public ActionResult Carteleras()
         {
-            ViewBag.Sedes = sservice.ObtenerSedes(); 
-            ViewBag.Peliculas = pservice.ObtenerPeliculas(); 
-            ViewBag.Versiones = pservice.ObtenerVersiones(); 
-            List<Carteleras> Carteleras = cservice.ObtenerCarteleras();
-
-            List<Cartelera> listaCarteleras = new List<Cartelera>();
-
-            foreach (Carteleras cartelera in Carteleras)
+            if (Session["user"] == null)
             {
-                Cartelera c = new Cartelera();
-                c.IdCartelera = cartelera.IdCartelera;
-                c.Sede = sservice.ObtenerSedePorId(cartelera.IdSede).Nombre;
-                c.Sala = cartelera.NumeroSala;
-                c.Pelicula = pservice.ObtenerPeliculaPorId(cartelera.IdPelicula).Nombre;
-                c.Version = rservice.ObtenerVersionPorId(cartelera.IdVersion).Nombre;
-                c.FechaInicio = cartelera.FechaInicio;
-                c.FechaFin = cartelera.FechaFin;
-                listaCarteleras.Add(c);
+                Session["redirect"] = "Carteleras";
+                return RedirectToAction("Login", "Home");
             }
 
-            return View(listaCarteleras);
+            return View();
         }
         [HttpPost]
         public ActionResult Carteleras(Cartelera c)
@@ -147,6 +164,19 @@ namespace PW3TPFinal.Controllers
         [HttpGet]
         public ActionResult Reportes()
         {
+            if (Session["user"] == null)
+            {
+                Session["redirect"] = "Reportes";
+                return RedirectToAction("Login", "Home");
+            }
+            ViewBag.Peliculas = pservice.ObtenerPeliculas();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ReporteReserva()
+        {
+            ViewBag.Peliculas = pservice.ObtenerPeliculas();
             return View();
         }
         // fin Controllers para los reportes  //

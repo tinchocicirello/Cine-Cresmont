@@ -225,9 +225,10 @@
     <Content Include="Content\css\bootstrap.css.map" />
     <Content Include="Content\css\bootstrap.min.css.map" />
     <None Include="Project_Readme.html" />
-    <Content Include="Views\Administracion\editarSedes.cshtml" />
+    <Content Include="Views\Administracion\EditarSede.cshtml" />
     <Content Include="Views\Administracion\EditarPelicula.cshtml" />
     <Content Include="Views\Administracion\NuevaPelicula.cshtml" />
+    <Content Include="Views\Shared\_LayoutBase.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

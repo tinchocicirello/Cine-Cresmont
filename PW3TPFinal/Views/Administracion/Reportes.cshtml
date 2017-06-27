@@ -5,78 +5,36 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Reportes</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FechaHoraInicio)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NumeroDocumento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CantidadEntradas)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FechaCarga)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Peliculas.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Sedes.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TiposDocumentos.Descripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Versiones.Nombre)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaHoraInicio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NumeroDocumento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CantidadEntradas)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaCarga)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Peliculas.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Sedes.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TiposDocumentos.Descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Versiones.Nombre)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdReserva }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdReserva }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdReserva })
-        </td>
-    </tr>
-}
-
-</table>
+<div class="container">
+    <div class="col-md-12">
+        <h3 class="text-md-left">Generar reportes de Reservas</h3>
+        <br />
+        <!-- Listado de Sedes -->
+        <div class="card">
+            <div class="card card-block">
+                <div class="panel-body">
+                    @using (Html.BeginForm("ReporteReserva", "Administracion", FormMethod.Post, new { @class = "login-form" }))
+                    {
+                        @Html.Label("Pelicula")
+                        <select class="form-control">
+                            @foreach (var p in ViewBag.Peliculas)
+                            {
+                                <option value="@p.IdPelicula">@p.Nombre</option>
+                            }
+                        </select>
+                        <br />
+                        @Html.Label("Desde")
+                        @Html.TextBox("FechaInicio", null, new { @class = "form-control", type = "Date" })
+                        <br />
+                        @Html.Label("Hasta")
+                        @Html.TextBox("FechaFin", null, new { @class = "form-control", type = "Date" })
+                        <br />
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">
+                            Generar Reporte
+                        </button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

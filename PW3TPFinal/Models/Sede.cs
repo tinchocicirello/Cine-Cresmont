@@ -17,7 +17,6 @@ namespace PW3TPFinal.Models
         public string Direccion { get; set; }
 
         [Required(ErrorMessage = "Debe ingresar un precio de entrada general")]
-        [Range(10.00, 250.00, ErrorMessage = "El precio de la entrada debe estar entre $10.00 y $250.00")]
         public decimal PrecioGeneral { get; set; }
     }
 
