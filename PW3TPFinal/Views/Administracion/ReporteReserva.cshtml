@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "ReporteReserva";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="col-md-12">
+        <h3 class="text-md-left">Reporte de reservas realizadas para la pelicula en las fechas seleccionadas</h3>
+        <br />
+        <!-- Listado de Sedes -->
+        <div class="card">
+            <div class="card card-block">
+                <div class="panel-body">
+                    <table class="table">
+                        <tr>
+                            <td><strong>ID Reserva</strong></td>
+                            <td><strong>Sede</strong></td>
+                            <td><strong>Version</strong></td>
+                            <td><strong>Pelicula</strong></td>
+                            <td><strong>Precio</strong></td>
+                        </tr>
+
+                        @foreach (var item in ViewBag.Reserva)
+                        {
+                            <tr>
+                                <td>@item.IdReserva</td>
+                                <td>@item.Sedes.Nombre</td>
+                                <td>@item.Versiones.Nombre</td>
+                                <td>@item.Peliculas.Nombre</td>
+                                <td>$ @item.Sedes.PrecioGeneral</td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1">
+        <br />
+        @Html.ActionLink("Volver", "Reportes", new { @controller = "Administracion" }, new { @class = "btn btn-sm btn-primary btn-block" })
+    </div>
+</div>

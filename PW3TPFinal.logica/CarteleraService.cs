@@ -27,6 +27,14 @@ namespace PW3TPFinal.logica
 
         }
 
+        // metodo para editar las carteleras
+        public void EditarCartelera(Carteleras c)
+        {
+            cdal.EditarCartelera(c);
+            return;
+
+        }
+
 
         // metodo para obtener lista de carteleras
         public List<Carteleras> ObtenerCarteleras()
@@ -35,12 +43,40 @@ namespace PW3TPFinal.logica
             return listaCarteleras;
         }
 
+        // metodo para obtener cartelera por id
+        public Carteleras ObtenerCartelerasPorId(int idCartelera)
+        {
+            Carteleras c = cdal.ObtenerCartelerasPorId(idCartelera);
+            return c;
+        }
+
 
         // metodo para obtener carteleras por sede
         public List<Carteleras> ObtenerCarteleraPorSede(int sede)
         {
             List<Carteleras> listaCartelerasSede = cdal.ObtenerCarteleraPorSede(sede);
             return listaCartelerasSede;
+        }
+
+        // metodo para obtener sedes por carteleras
+        public List<Sedes> ObtenerSedesPorPelicula(int idPelicula, int idVersion)
+        {
+            List<Sedes> listaSedes = cdal.ObtenerSedesPorPelicula(idPelicula,idVersion);
+            return listaSedes;
+        }
+
+        // metodo para obtener ids sede de las carteleras
+        public List<int> ObtenerIdSedesPorCartelera()
+        {
+            List<int> idSedes = cdal.ObtenerIdSedesPorCartelera();
+            return idSedes;
+        }
+
+        // obtengo una lista de sedes disponibles para crear carteleras
+        public List<Sedes> ObtenerSedesDisponiblesCarteleras()
+        {
+            List<Sedes> listaSedesDispo = cdal.ObtenerSedesDisponiblesCarteleras();
+            return listaSedesDispo;
         }
     }
 }

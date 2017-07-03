@@ -12,21 +12,27 @@
         {
             <div class="form-control">
                 <p>
+                    @Html.Hidden("IdSede", null, new { Value = ViewBag.Sede.IdSede })
+
                     @Html.Label("Nombre de Sede")
-                    @Html.TextBox("Nombre", null, new { @class = "form-control", @value = ViewBag.Sede.Nombre })
+                    @Html.TextBox("Nombre", null, new { @class = "form-control", Value = ViewBag.Sede.Nombre })
                     @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
                     <br />
                     @Html.Label("Direccion")
-                    @Html.TextBox("Direccion", null, new { @class = "form-control", @value = ViewBag.Sede.Direccion })
+                    @Html.TextBox("Direccion", null, new { @class = "form-control", Value = ViewBag.Sede.Direccion })
                     @Html.ValidationMessageFor(model => model.Direccion, "", new { @class = "text-danger" })
                     <br />
                     @Html.Label("Precio General de la Sede")
-                    @Html.TextBox("Precio", null, new { @class = "form-control", @value = ViewBag.Sede.PrecioGeneral })
+                    @Html.TextBox("PrecioGeneral", null, new { @class = "form-control", Value = ViewBag.Sede.PrecioGeneral })
                     @Html.ValidationMessageFor(model => model.PrecioGeneral, "", new { @class = "text-danger" })
                 </p>
                 <button type="submit" class="btn btn-lg btn-primary btn-block">Modificar</button>
             </div>
         }
+    </div>
+    <div class="col-md-1">
+        <br />
+        @Html.ActionLink("Volver", "Sedes", new { @controller = "Administracion" }, new { @class = "btn btn-sm btn-primary btn-block" })
     </div>
 </div>
 

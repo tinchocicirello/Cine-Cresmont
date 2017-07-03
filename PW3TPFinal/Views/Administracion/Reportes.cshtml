@@ -16,7 +16,7 @@
                     @using (Html.BeginForm("ReporteReserva", "Administracion", FormMethod.Post, new { @class = "login-form" }))
                     {
                         @Html.Label("Pelicula")
-                        <select class="form-control">
+                        <select name="IdPelicula" class="form-control">
                             @foreach (var p in ViewBag.Peliculas)
                             {
                                 <option value="@p.IdPelicula">@p.Nombre</option>
@@ -36,5 +36,9 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="col-md-1">
+        <br />
+        @Html.ActionLink("Volver", "Inicio", new { @controller = "Administracion" }, new { @class = "btn btn-sm btn-primary btn-block" })
     </div>
 </div>

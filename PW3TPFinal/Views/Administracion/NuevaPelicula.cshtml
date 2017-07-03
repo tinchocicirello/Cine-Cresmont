@@ -42,7 +42,7 @@
                         </select>
 
                         <br />
-                        @Html.Label("Imagen")
+                        @Html.Label("Portada")
                         @Html.TextBox("Imagen", null, new { @class = "form-control", type = "file" })
                         @Html.ValidationMessageFor(model => model.Imagen, "", new { @class = "text-danger" })
 
@@ -58,5 +58,9 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="col-md-1">
+        <br />
+        @Html.ActionLink("Volver", "Peliculas", new { @controller = "Administracion" }, new { @class = "btn btn-sm btn-primary btn-block" })
     </div>
 </div>

@@ -1,9 +1,11 @@
-﻿@model PW3TPFinal.DAL.Reservas
+﻿@model PW3TPFinal.Models.ReservaInicial
 
 @{
     ViewBag.Title = "Reserva";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var p = ViewBag.Pelicula;
 }
+
 
 <div class="container">
     <div class="col-md-12">
@@ -11,57 +13,60 @@
         <br />
         <div class="card">
             <div class="card card-block">
-                <h5 class="card-text">Reservar</h5>
+                <h5 class="card-text">Seleccionaste:</h5>
                 <div class="panel-body">
-                    @using (Html.BeginForm("ConfirmarReserva", "Peliculas", FormMethod.Post, new { @class = "form-signin" }))
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="card card-block">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <img src="@p.Imagen" class="card-img img-thumbnail" width="200" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card-text">
+                                            <p><strong>@p.Nombre</strong></p>
+                                            <p class="card-text">@p.Descripcion</p>
+                                            <p>Genero: <span>@p.Generos.Nombre</span></p>
+                                            <p>Calificacion: <span>@p.Calificaciones.Nombre</span></p>
+                                            <p>Duracion: <span>@p.Duracion mins</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    @using (Html.BeginForm("Reserva", "Peliculas", FormMethod.Post, new { @class = "form-signin" }))
                     {
+                        @Html.Hidden("IdPelicula", null, new { Value = @p.IdPelicula })
+
                         <div class="form-group">
                             @Html.Label("Version")
-                            <select class="form-control">
-                                @foreach (var v in ViewData.Versiones)
-                                {
-                                    <option value="@v.IdVersion">@v.Nombre</option>
-                                }
-                            </select>
-                          
+                            @Html.DropDownList("IdVersion", new SelectList(ViewBag.Versiones, "IdVersion", "Nombre"), "Seleccione Version", htmlAttributes: new { @class = "form-control", @id = "VersionReserva" })
+                            @Html.ValidationMessageFor(m => m.IdVersion, "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group">
                             @Html.Label("Sede")
-                            <select class="form-control">
-                                @foreach(var s in ViewData.Sedes)
-                                {
-                                    <option value="@s.IdSede">@s.Nombre</option>
-                                }
-                            </select>
-                            
+                            @Html.DropDownList("IdSede", new SelectList(string.Empty, "Value", "Text"), "Seleccione Sede", new { @class = "form-control", @id = "SedeReserva" })
+                            @Html.ValidationMessageFor(m => m.IdSede, "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group">
-                            @Html.Label("Dia")
-                            <select class="form-control">
-                                @foreach (var d in ViewData.Fechas)
-                                {
-                                    <option value="@d.dia">@d.Dia</option>
-                                }
-                            </select>
-                            
-                        </div>
-                        <div class="form-group">
-                            @Html.Label("Horario")
-                            <select class="form-control">
-                                @foreach (var h in ViewData.Horas)
-                                {
-                                    <option value="@h.Hora">@h.Hora</option>
-                                }
-                            </select>
-                            
+                            @Html.Label("Fecha y Hora")
+                            @Html.DropDownList("FechaHoraInicio", new SelectList(string.Empty, "Value", "Text"), "Seleccione Fecha y Hora", new { @class = "form-control", @id = "FechaHoraReserva" })
+                            @Html.ValidationMessageFor(m => m.FechaHoraInicio, "", new { @class = "text-danger" })
                         </div>
 
+
                         <button class="btn btn-lg btn-primary btn-block" type="submit">
-                            ¡Comprar!
+                            ¡Reservar!
                         </button>
                     }
                 </div>
             </div>
         </div>
+    </div>
+    <div class="col-md-1">
+        <br />
+        @Html.ActionLink("Volver", "Inicio", new { @controller = "Home" }, new { @class = "btn btn-sm btn-primary btn-block" })
     </div>
 </div>

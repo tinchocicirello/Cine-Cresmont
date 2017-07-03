@@ -12,17 +12,16 @@ namespace PW3TPFinal.logica
         ReservaDAL rdal = new ReservaDAL();
 
         // metodo para obtener las versiones
-        public List<Versiones> ObtenerVersiones()
+        public List<Versiones> ObtenerVersiones(int idPelicula)
         {
-            List<Versiones> listaVersiones = rdal.ObtenerVersiones();
+            List<Versiones> listaVersiones = rdal.ObtenerVersiones(idPelicula);
             return listaVersiones;
         }
 
         // metodo para obtener reserva por fecha
-        public List<Reservas> ObtenerReservaPorFecha()
+        public List<Reservas> ObtenerReservaPorFechayPelicula(DateTime finicio, DateTime ffin, int idPelicula)
         {
-            List<Reservas> listaReservaFecha = rdal.ObtenerReservaPorFecha();
-            return listaReservaFecha;
+           return rdal.ObtenerReservaPorFechayPelicula(finicio,ffin,idPelicula);
         }
 
         // metodo para obtener reservas por Hora
@@ -32,6 +31,12 @@ namespace PW3TPFinal.logica
             return listaReservaHora;
         }
 
+        //metodo para crear reserva
+        public void CrearReserva(Reservas r)
+        {
+            rdal.CrearReserva(r);
+            return;
+        }
 
         // metodo para obtener version por id
         public Versiones ObtenerVersionPorId(int idVersion)
@@ -40,6 +45,17 @@ namespace PW3TPFinal.logica
             version = rdal.ObtenerVersionPorId(idVersion);
 
             return version;
+        }
+
+        public Carteleras ObtenerCarteleraPorPeliculaVersionSede(int idPelicula, int idVersion, int idSede)
+        {
+            return rdal.ObtenerCarteleraPorPeliculaVersionSede(idPelicula, idVersion, idSede);
+        }
+
+        public List<TiposDocumentos> ObtenerTiposDocumento()
+        {
+            return rdal.ObtenerTiposDocumento();
+
         }
     }
 }

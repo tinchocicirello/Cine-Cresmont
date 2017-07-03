@@ -28,6 +28,7 @@ namespace PW3TPFinal.Controllers
         public ActionResult Inicio()
         {
             ViewBag.Peliculas = pservice.ObtenerPeliculas();
+            ViewBag.Genero = pservice.ObtenerGeneros();
             return View();
         }
 

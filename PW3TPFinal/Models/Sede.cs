@@ -19,5 +19,4 @@ namespace PW3TPFinal.Models
         [Required(ErrorMessage = "Debe ingresar un precio de entrada general")]
         public decimal PrecioGeneral { get; set; }
     }
-
 }

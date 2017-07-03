@@ -9,21 +9,27 @@
 <link href="~/Content/css/album.css" rel="stylesheet">
 
 <div class="container">
+    @if (TempData["ReservaConfirmada"] != null)
+    {
+        <p class="alert-success card-block">@TempData["ReservaConfirmada"]</p>
+    }
     <h3 class="text-md-left">Peliculas en Cartelera!</h3>
     <br />
-    @foreach (var peli in ViewBag.Peliculas)
-    {
-        <!-- Listado de Peliculas -->
-        <div class="row">
-            <div class="card">
-                <img class="card-img-top" src="@peli.Imagen" alt="Card image cap">
-                <div class="card-block">
-                    <h4 class="card-title">@peli.Nombre</h4>
-                    <p class="card-text">@peli.Genero</p>
-                    <p class="card-text">@peli.Calificacion</p>
-                    <a href="#" class="btn btn-primary">Reservar</a>
+    <!-- Listado de Peliculas -->
+    <div class="row">
+        @foreach (var peli in ViewBag.Peliculas)
+        {
+            <div class="col-md-4">
+                <div class="card">
+                    <img class="card-img-top" src="@peli.Imagen" width="200" alt="Card image cap">
+                    <div class="card-group">
+                        <h4><strong>@peli.Nombre</strong></h4>
+                        <p class="card-text">Genero: @peli.Generos.Nombre</p>
+                        <p class="card-text">Calificacion: @peli.Calificaciones.Nombre</p>
+                        @Html.ActionLink("Reservar", "Reserva", "Peliculas", new { @id = @peli.IdPelicula }, new { @class = "btn btn-primary" })
+                    </div>
                 </div>
             </div>
-        </div>
-    }
+        }
+    </div>
 </div>

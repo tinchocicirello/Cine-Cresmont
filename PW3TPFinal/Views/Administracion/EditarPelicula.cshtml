@@ -13,39 +13,49 @@
                 <div class="panel-body">
                     @using (Html.BeginForm("EditarPelicula", "Administracion", FormMethod.Post, new { enctype = "multipart/form-data", @class = "login-form" }))
                     {
+                        @Html.Hidden("IdPelicula", null, new { Value = ViewBag.Pelicula.IdPelicula })
+
                         @Html.Label("Nombre")
-                        @Html.TextBox("Nombre", null, new { @class = "form-control" })
+                        @Html.TextBox("Nombre", null, new { @class = "form-control", Value = ViewBag.Pelicula.Nombre })
                         @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
                         <br />
                         @Html.Label("Descripcion")
-                        @Html.TextArea("Descripcion", new { rows = 6, columns = 40, @class = "form-control" })
+                        @Html.TextArea("Descripcion", (String)ViewBag.Pelicula.Descripcion, new { rows = 5, columns = 20, @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
-
                         <br />
                         @Html.Label("Genero")
-                        @Html.DropDownListFor(model => model.IdGenero, new SelectList(ViewBag.Generos, "IdGenero", "Nombre"), new { @class = "form-control" })
-
+                        @Html.DropDownList("IdGenero", new SelectList(ViewBag.Generos, "IdGenero", "Nombre", ViewBag.Pelicula.IdGenero), new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.IdGenero, "", new { @class = "text-danger" })
                         <br />
                         @Html.Label("Calificacion")
-                        @Html.DropDownListFor(model => model.IdCalificacion, new SelectList(ViewBag.Calificaciones, "IdCalificacion", "Nombre"), new { @class = "form-control" })
+                        @Html.DropDownList("IdCalificacion", new SelectList(ViewBag.Calificaciones, "IdCalificacion", "Nombre", ViewBag.Pelicula.IdCalificacion), new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.IdCalificacion, "", new { @class = "text-danger" })
 
                         <br />
-                        @Html.Label("Imagen")
+                        @Html.Label("Cambiar Imagen")
+                        <div class="col-md-2">
+                            <h6>Imagen actual</h6>
+                            <img src="@ViewBag.Pelicula.Imagen" class="img-thumbnail" width="80" /> 
+                        </div>
                         @Html.TextBox("Imagen", null, new { @class = "form-control", type = "file" })
                         @Html.ValidationMessageFor(model => model.Imagen, "", new { @class = "text-danger" })
 
                         <br />
                         @Html.Label("Duración")
-                        @Html.TextBox("Duracion", null, new { @class = "form-control" })
+                        @Html.TextBox("Duracion", null, new { @class = "form-control", Value = ViewBag.Pelicula.Duracion })
                         @Html.ValidationMessageFor(model => model.Duracion, "", new { @class = "text-danger" })
 
                         <br />
 
-                        <button type="submit" class="btn btn-lg btn-primary btn-block">Editar</button>
+                        <button type="submit" class="btn btn-lg btn-primary btn-block">Editar Pelicula</button>
                     }
                 </div>
             </div>
         </div>
+    </div>
+    <div class="col-md-1">
+        <br />
+        @Html.ActionLink("Volver", "Peliculas", new { @controller = "Administracion" }, new { @class = "btn btn-sm btn-primary btn-block" })
     </div>
 </div>
 

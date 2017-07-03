@@ -4,3 +4,58 @@
     ViewBag.Title = "Carteleras";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<div class="container">
+    
+    <h3>Gestion de Carteleras</h3>
+    <br />
+    <!-- Agregar nueva cartelera -->
+    <div class="col-md-3">
+        @Html.ActionLink("Nueva Cartelera", "NuevaCartelera", "Administracion", new { @class = "btn btn-lg btn-primary btn-block" })
+    </div>
+    <br />
+    <div class="col-md-12">
+        <!-- Lista de carteleras -->
+        <div class="card">
+            <div class="card card-block">
+                <h5 class="card-text">Listado de Carteleras:</h5>
+                <div class="panel-body">
+                    <table class="table table-hover">
+                        <tr>
+                            <td><strong>ID</strong></td>
+                            <td><strong>Sede</strong></td>
+                            <td><strong>Sala</strong></td>
+                            <td><strong>Pelicula</strong></td>
+                            <td><strong>Version</strong></td>
+                            <td><strong>Hora de Inicio</strong></td>
+                            <td><strong>Fecha de Inicio</strong></td>
+                            <td><strong>Fecha de Fin</strong></td>
+                            <td></td>
+                        </tr>
+
+                        @foreach (var c in ViewBag.Carteleras)
+                        {
+                            <tr>
+                                <td>@c.IdCartelera</td>
+                                <td>@c.Sedes.Nombre</td>
+                                <td>@c.NumeroSala</td>
+                                <td>@c.Peliculas.Nombre</td>
+                                <td>@c.Versiones.Nombre</td>
+                                <td>@c.HoraInicio hs</td>
+                                <td>@c.FechaInicio.ToString("dd-MM-yyyy")</td>
+                                <td>@c.FechaFin.ToString("dd-MM-yyyy")</td>
+                                <td>@Html.ActionLink("Modificar", "EditarCartelera", "Administracion", new { id = @c.IdCartelera }, new { @class = "text-right" })</td>
+                                <td>@Html.ActionLink("Eliminar", "EliminarCartelera", "Administracion", new { id = @c.IdCartelera }, new { @class = "text-right" })</td>
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1">
+        <br/>
+        @Html.ActionLink("Volver", "Inicio", new { @controller = "Administracion" } ,new { @class = "btn btn-sm btn-primary btn-block" })
+    </div>
+</div>

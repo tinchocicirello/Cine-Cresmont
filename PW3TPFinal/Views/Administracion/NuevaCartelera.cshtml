@@ -1,0 +1,107 @@
+﻿@model PW3TPFinal.Models.Cartelera
+@{
+    ViewBag.Title = "Nueva Cartelera";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="col-md-12">
+        <h3 class="text-md-left">Agregar Nueva Cartelera</h3>
+        <br />
+        <div class="card">
+            <div class="card card-block">
+                <div class="panel-body">
+                    @using (Html.BeginForm("NuevaCartelera", "Administracion", FormMethod.Post, new { @class = "login-form" }))
+                    {
+
+                        @Html.Label("Seleccione una sede")
+                        @Html.DropDownList("IdSede", new SelectList(ViewBag.Sedes, "IdSede", "Nombre"), new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.IdSede, "", new { @class = "text-danger" })
+
+                        <br />
+                        @Html.Label("Numero de Sala")
+                        @Html.TextBox("NumeroSala", null, new { @class = "form-control"})
+                        @Html.ValidationMessageFor(model => model.FechaInicio, "", new { @class = "text-danger" })
+                        
+                        <br />
+                        @Html.Label("Seleccione una Película")
+                        @Html.DropDownList("IdPelicula", new SelectList(ViewBag.Peliculas, "IdPelicula", "Nombre"), new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.IdPelicula, "", new { @class = "text-danger" })
+
+                        <br />
+                        @Html.Label("Seleccione una Version")
+                        @Html.DropDownList("IdVersion", new SelectList(ViewBag.Versiones, "IdVersion", "Nombre"), new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.IdVersion, "", new { @class = "text-danger" })
+                        <br />
+                        @Html.Label("Seleccione los días a proyectar")
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-control">
+                                    @Html.CheckBox("Lunes", false)
+                                    @Html.Label("Lunes")
+                                </div>
+                                <br />
+                                <div class="form-control">
+                                    @Html.CheckBox("Jueves", false)
+                                    @Html.Label("Jueves")
+                                    
+                                </div>
+                                <br />
+                                <div class="form-control">
+                                    @Html.CheckBox("Domingo", false)
+                                    @Html.Label("Domingo")
+                                    
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-control">
+                                    @Html.CheckBox("Martes", false)
+                                    @Html.Label("Martes")
+                                </div>
+                                <br />
+                                <div class="form-control">
+                                    @Html.CheckBox("Viernes", false)
+                                    @Html.Label("Viernes")
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-control">
+                                    @Html.CheckBox("Miercoles", false)
+                                    @Html.Label("Miercoles")
+                                </div>
+                                <br />
+                                <div class="form-control">
+                                    @Html.CheckBox("Sabado", false)
+                                    @Html.Label("Sabado")
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        @Html.Label("HoraInicio", "Hora de inicio de Cartelera")
+                        @Html.TextBox("HoraInicio", 15, new { @class = "form-control" })
+                        <br />
+                        <div class="row">
+                            <div class="col-md-6">
+                                @Html.Label("FechaInicio", "Fecha de Inicio")
+                                @Html.TextBox("FechaInicio", null, new { @class = "form-control", type = "Date" })
+                                @Html.ValidationMessageFor(model => model.FechaInicio, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-6">
+                                @Html.Label("FechaFin", "Fecha de Fin")
+                                @Html.TextBox("FechaFin", null, new { @class = "form-control", type = "Date" })
+                                @Html.ValidationMessageFor(model => model.FechaFin, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <br />
+                        <button type="submit" class="btn btn-primary btn-ln btn-block">Crear Cartelera</button>
+                        }
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1">
+        <br />
+        @Html.ActionLink("Volver", "Carteleras", new { @controller = "Administracion" }, new { @class = "btn btn-sm btn-primary btn-block" })
+    </div>
+</div>

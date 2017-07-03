@@ -22,11 +22,11 @@ namespace PW3TPFinal.DAL
         {
             var querySede = from s in ctx.Sedes where s.IdSede == sede.IdSede select s;
 
-            foreach (Sedes sedes in querySede)
+            foreach (Sedes s in querySede)
             {
-                sedes.Nombre = sede.Nombre;
-                sedes.Direccion = sede.Direccion;
-                sedes.PrecioGeneral = sede.PrecioGeneral;
+                s.Nombre = sede.Nombre;
+                s.Direccion = sede.Direccion;
+                s.PrecioGeneral = sede.PrecioGeneral;
             }
 
             ctx.SaveChanges();

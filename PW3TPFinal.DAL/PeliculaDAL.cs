@@ -14,10 +14,8 @@ namespace PW3TPFinal.DAL
         // Metodo para agregar nueva pelicula 
         public void AgregarPelicula(Peliculas p)
         {
-            CresmontContext contexto = new CresmontContext();
-
-            contexto.Peliculas.Add(p);
-            contexto.SaveChanges();
+            ctx.Peliculas.Add(p);
+            ctx.SaveChanges();
         }
 
         // metodo para listar peliculas
@@ -25,6 +23,7 @@ namespace PW3TPFinal.DAL
         {
             var queryPeliculas = (from p in ctx.Peliculas select p).ToList();
             return queryPeliculas;
+
         }
 
         // metodo para actualizar una pelicula
@@ -61,7 +60,9 @@ namespace PW3TPFinal.DAL
                 peli.Nombre = p.Nombre;
                 peli.Descripcion = p.Descripcion;
                 peli.Imagen = p.Imagen;
+                peli.Calificaciones = p.Calificaciones;
                 peli.IdCalificacion = p.IdCalificacion;
+                peli.Generos = p.Generos;
                 peli.IdGenero = p.IdGenero;
                 peli.Duracion = p.Duracion;
             }

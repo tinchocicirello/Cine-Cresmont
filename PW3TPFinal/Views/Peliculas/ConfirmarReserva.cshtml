@@ -18,16 +18,16 @@
                             <td><strong>Pelicula</strong></td>
                             <td><strong>Version</strong></td>
                             <td><strong>Sede</strong></td>
-                            <td><strong>Fecha</strong></td>
-                            <td><strong>Hora</strong></td>
+                            <td><strong>Sala</strong></td>
+                            <td><strong>Fecha de función</strong></td>
                         </tr>
                         
                         <tr>
-                            <td>Batman</td>
-                            <td>Castellano</td>
-                            <td>Villa Bosch</td>
-                            <td>Lunes 26 de Junio</td>
-                            <td>15:30hs</td>
+                            <td>@ViewBag.Reserva.Peliculas.Nombre</td>
+                            <td>@ViewBag.Reserva.Versiones.Nombre</td>
+                            <td>@ViewBag.Reserva.Sedes.Nombre</td>
+                            <td>@ViewBag.Reserva.NumeroSala</td>
+                            <td>@ViewBag.FechaReserva</td>
                         </tr>
 
                     </table>
@@ -43,31 +43,47 @@
                 <hr />
                 <div class="panel-body">
                     @using (Html.BeginForm("ConfirmarReserva", "Peliculas", FormMethod.Post, new { @class = "form-signin" }))
-                    { <div class="form-group">
-                        @Html.Label("Email")
-                        @Html.TextBox("Email", null, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                    </div>
+                    { 
+                        @Html.Hidden("IdPelicula", null, new { Value = ViewBag.Reserva.IdPelicula })
+                        @Html.Hidden("IdSede", null, new { Value = ViewBag.Reserva.IdSede })
+                        @Html.Hidden("IdVersion", null, new { Value = ViewBag.Reserva.IdVersion })
+                        @Html.Hidden("FechaHoraInicio", null, new { Value = ViewBag.FechaReserva })
 
-                    <div class="form-group">
-                        @Html.Label("Cantidad de Entradas")
-                        @Html.TextBox("CantidadEntradas", null, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Cantidad, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="form-group">
-                        DNI
-                        <br />
                         <div class="form-group">
-                            @Html.Label("Numero de Documento")
-                            @Html.TextBox("NumeroDocumento", null, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.NumeroDocumento, "", new { @class = "text-danger" })
+                            @Html.Label("Email")
+                            @Html.TextBox("Email", null, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                         </div>
-                    </div>
-                    <p class="card-text">La reserva estará vigente hasta 1 hora antes de la función. En dicho momento deberá confirmarse en la sede seleccionada.</p>
-                    <button type="submit" class="btn btn-lg btn-primary btn-block">Confirmar Reserva</button>
+
+                        <div class="form-group">
+                            @Html.Label("Cantidad de Entradas")
+                            @Html.TextBox("CantidadEntradas", null, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Cantidad, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    @Html.Label("Tipo de Documento")
+                                    @Html.DropDownList("IdTipoDocumento", new SelectList(ViewBag.TiposDocumento, "IdTipoDocumento", "Descripcion"), "Seleccione..", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.IdTipoDocumento, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-9">
+                                    @Html.Label("Numero de Documento")
+                                    @Html.TextBox("NumeroDocumento", null, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.NumeroDocumento, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <p class="card-text">La reserva estará vigente hasta 1 hora antes de la función. En dicho momento deberá confirmarse en la sede seleccionada.</p>
+                        <button type="submit" class="btn btn-lg btn-primary btn-block">Confirmar Reserva</button>
                     }
                 </div>
             </div>
         </div>
+    </div>
+    <div class="col-md-1">
+        <br />
+        @Html.ActionLink("Volver", "Reserva", new { @controller = "Peliculas" }, new { @class = "btn btn-sm btn-primary btn-block" })
     </div>
 </div>

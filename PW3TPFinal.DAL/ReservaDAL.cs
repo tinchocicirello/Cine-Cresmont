@@ -11,34 +11,24 @@ namespace PW3TPFinal.DAL
         CresmontContext ctx = new CresmontContext();
 
 
-        public List<Versiones> ObtenerVersiones()
+        public List<Versiones> ObtenerVersiones(int idPelicula)
         {
-            var versiones = (from v in ctx.Versiones select v).ToList();
-            List<Versiones> listaversiones = new List<Versiones>();
-
-            foreach (Versiones version in listaversiones)
-            {
-                Versiones ver = new Versiones();
-                ver.IdVersion = version.IdVersion;
-                ver.Nombre = version.Nombre;
-                listaversiones.Add(ver);
-            }
+            var listaversiones = (from c in ctx.Carteleras where c.IdPelicula == idPelicula select c.Versiones).Distinct().ToList();
 
             return listaversiones;
         }
 
-        public List<Reservas> ObtenerReservaPorFecha()
+        public List<Reservas> ObtenerReservaPorFechayPelicula(DateTime finicio, DateTime ffin, int idPelicula)
         {
-            var dias = (from s in ctx.Reservas select s).ToList();
-            List<Reservas> listaDias = new List<Reservas>();
-            foreach (Reservas reserva in listaDias)
-            {
-                Reservas re = new Reservas();
-                re.IdReserva = reserva.IdVersion;
-                re.FechaCarga = reserva.FechaCarga;
-                listaDias.Add(re);
-            }
-            return listaDias;
+            return (from r in ctx.Reservas where r.IdPelicula == idPelicula && r.FechaHoraInicio >= finicio && r.FechaHoraInicio <= ffin select r).ToList();
+  
+        }
+
+        //metodo para crear reserva
+        public void CrearReserva(Reservas r)
+        {
+            ctx.Reservas.Add(r);
+            ctx.SaveChanges();
         }
 
         public List<Reservas> ObtenerReservaPorHorario()
@@ -57,16 +47,19 @@ namespace PW3TPFinal.DAL
 
         public Versiones ObtenerVersionPorId(int id)
         {
-            var queryVersiones = (from v in ctx.Versiones where v.IdVersion == id select v).ToList();
+            var queryVersiones = (from v in ctx.Versiones where v.IdVersion == id select v).FirstOrDefault();
 
-            Versiones version = new Versiones();
+            return queryVersiones;
+        }
 
-            foreach (Versiones ver in queryVersiones)
-            {
-                version.IdVersion = ver.IdVersion;
-                version.Nombre = ver.Nombre;
-            }
-            return version;
+        public Carteleras ObtenerCarteleraPorPeliculaVersionSede(int idPelicula, int idVersion, int idSede)
+        {
+            return (from c in ctx.Carteleras where c.IdPelicula == idPelicula && c.IdVersion == idVersion && c.IdSede == idSede select c).FirstOrDefault();
+        }
+
+        public List<TiposDocumentos> ObtenerTiposDocumento()
+        {
+            return (from td in ctx.TiposDocumentos select td).ToList();
         }
     }
 }
