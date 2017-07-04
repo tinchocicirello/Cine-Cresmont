@@ -252,7 +252,7 @@ namespace PW3TPFinal.Controllers
             ViewBag.Cartelera = cservice.ObtenerCartelerasPorId(id);
             ViewBag.Peliculas = pservice.ObtenerPeliculas();
             ViewBag.Versiones = pservice.ObtenerVersiones();
-            ViewBag.Sedes = cservice.ObtenerSedesDisponiblesCarteleras();
+            ViewBag.Sedes = cservice.ObtenerSedesDisponiblesCartelerasMenosActual(id);
             return View();
         }
 

@@ -17,6 +17,6 @@ namespace PW3TPFinal.Models
         public int IdSede { get; set; }
 
         [Required]
-        public DateTime FechaHoraInicio { get; set; }
+        public string Fecha { get; set; }
     }
 }

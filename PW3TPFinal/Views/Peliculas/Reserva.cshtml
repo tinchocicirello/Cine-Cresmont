@@ -52,8 +52,8 @@
                         </div>
                         <div class="form-group">
                             @Html.Label("Fecha y Hora")
-                            @Html.DropDownList("FechaHoraInicio", new SelectList(string.Empty, "Value", "Text"), "Seleccione Fecha y Hora", new { @class = "form-control", @id = "FechaHoraReserva" })
-                            @Html.ValidationMessageFor(m => m.FechaHoraInicio, "", new { @class = "text-danger" })
+                            @Html.DropDownList("Fecha", new SelectList(string.Empty, "Value", "Text"), "Seleccione Fecha y Hora", new { @class = "form-control", @id = "FechaHoraReserva" })
+                            @Html.ValidationMessageFor(m => m.Fecha, "", new { @class = "text-danger" })
                         </div>
 
 

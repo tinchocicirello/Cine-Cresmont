@@ -78,5 +78,12 @@ namespace PW3TPFinal.logica
             List<Sedes> listaSedesDispo = cdal.ObtenerSedesDisponiblesCarteleras();
             return listaSedesDispo;
         }
+
+        // obtengo una lista de sedes disponibles para editar carteleras
+        public List<Sedes> ObtenerSedesDisponiblesCartelerasMenosActual(int idCartelera)
+        {
+            List<Sedes> listaSedesDispo = cdal.ObtenerSedesDisponiblesCartelerasMenosActual(idCartelera);
+            return listaSedesDispo;
+        }
     }
 }

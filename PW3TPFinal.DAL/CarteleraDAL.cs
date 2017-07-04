@@ -127,6 +127,13 @@ namespace PW3TPFinal.DAL
             return listaSedes;
         }
 
+        // obtengo una lista de sedes disponibles para editar carteleras
+        public List<Sedes> ObtenerSedesDisponiblesCartelerasMenosActual(int idCartelera)
+        {
+            var listaSedes = (from s in ctx.Sedes where !(from c in ctx.Carteleras where c.IdCartelera != idCartelera  select c.Sedes.IdSede).Contains(s.IdSede) select s).ToList();
+            return listaSedes;
+        }
+
     }
 }
 

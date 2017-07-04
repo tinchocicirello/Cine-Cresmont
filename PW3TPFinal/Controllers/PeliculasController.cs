@@ -40,7 +40,7 @@ namespace PW3TPFinal.Controllers
         public ActionResult ConfirmarReserva(ReservaInicial r)
         {
             ViewBag.Reserva = rservice.ObtenerCarteleraPorPeliculaVersionSede(r.IdPelicula, r.IdVersion, r.IdSede);
-            ViewBag.FechaReserva = r.FechaHoraInicio;
+            ViewBag.FechaReserva = r.Fecha;
             ViewBag.TiposDocumento = rservice.ObtenerTiposDocumento();
             return View();
         }
